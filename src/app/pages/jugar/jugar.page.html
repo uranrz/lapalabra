@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>¡Juguemos, {{player}}!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-header>
+    <ion-toolbar>
+      <ion-title size="medium">Nivel: {{dificultad}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div>Tiempo: {{ tiempoActual | date:'mm:ss:SSS' }}</div>
+    <div *ngFor="let fila of filas; let i = index">
+      <app-fila
+        [filaActiva]="fila.activa"
+        (filaCompleta)="onFilaCompleta($event)"
+        (siguienteFila)="cambiarFilaActiva(i + 1)">
+      </app-fila>
+    </div>
+    <button 
+    (click)="enviar()"
+    style="
+      padding: 10px 20px;
+      font-size: 16px;
+      color: black;
+      background-color: #72db35;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-left: 39%;
+    "
+  >Enviar</button>
+  </ion-content>
+  
+</ion-content>
+

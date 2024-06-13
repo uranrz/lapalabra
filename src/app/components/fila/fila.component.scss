@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.verde {
+  background-color: green;
+}
+
+.amarillo {
+  background-color: yellow;
+}
+
+.rojo {
+  background-color: red;
+}

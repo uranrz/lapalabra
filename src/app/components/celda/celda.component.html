@@ -1,0 +1,11 @@
+<ion-input
+  type="text"
+  class="custom"
+  [maxlength]="1"
+  [disabled]="disabled"
+  [(ngModel)]="valor"
+  (ngModelChange)="onValorChange()"
+  (keydown)="onKeyDown($event)"
+  [ngStyle]="{'background-color': disabled ? 'lightgray' : 'white'}"
+></ion-input>
+

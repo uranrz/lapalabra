@@ -1,0 +1,53 @@
+
+<app-celda 
+
+  [disabled]="!filaActiva"
+  (valorEmitido)="capturarValor($event, 0)"
+  [ngClass]="{
+    'verde': resultado && resultado[0] === 'verde',
+    'amarillo': resultado && resultado[0] === 'amarillo',
+    'rojo': resultado && resultado[0] === 'rojo'}"
+    
+></app-celda>
+
+<app-celda 
+  [disabled]="!filaActiva"
+  (valorEmitido)="capturarValor($event, 1)"
+  [ngClass]="{
+    'verde': resultado && resultado[1] === 'verde',
+    'amarillo': resultado && resultado[1] === 'amarillo',
+    'rojo': resultado && resultado[1] === 'rojo'}"
+></app-celda>
+
+<app-celda 
+  [disabled]="!filaActiva"
+  (valorEmitido)="capturarValor($event, 2)"
+  [ngClass]="{
+    'verde': resultado && resultado[2] === 'verde',
+    'amarillo': resultado && resultado[2] === 'amarillo',
+    'rojo': resultado && resultado[2] === 'rojo'}"
+></app-celda>
+
+<app-celda 
+  [disabled]="!filaActiva"
+  (valorEmitido)="capturarValor($event, 3)"
+  [ngClass]="{
+    'verde': resultado && resultado[3] === 'verde',
+    'amarillo': resultado && resultado[3] === 'amarillo',
+    'rojo': resultado && resultado[3] === 'rojo'}"
+></app-celda>
+
+<app-celda 
+  [disabled]="!filaActiva"
+  (valorEmitido)="capturarValor($event, 4)"
+  [ngClass]="{
+    'verde': resultado && resultado[4] === 'verde',
+    'amarillo': resultado && resultado[4] === 'amarillo',
+    'rojo': resultado && resultado[4] === 'rojo'}"
+></app-celda>
+
+
+
+
+
+
