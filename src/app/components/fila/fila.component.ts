@@ -25,7 +25,6 @@ export class FilaComponent {
   }
 
   capturarValor(event: {valor: string, enterPressed: boolean}, index: number) {
-
     const { valor, enterPressed } = event;
 
     // Verificar que el valor no esté vacío y sea una letra
@@ -37,7 +36,6 @@ export class FilaComponent {
       this.letras[index] = '';
       this.celdasCompletas[index] = false;
     }
-
   }
 
   verificarFilaCompleta() {

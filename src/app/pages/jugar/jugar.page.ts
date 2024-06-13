@@ -34,8 +34,6 @@ export class JugarPage implements OnInit {
 
   public broWon = false;
 
-  public resultado = [];
-
   public tiempoInicio: number = 0;
   public tiempoActual: number = 0;
   public intervalId: any;
@@ -68,13 +66,13 @@ export class JugarPage implements OnInit {
         console.error('Error fetching data', error);
       }
     };
-    
+
     await doGet();
 
     if (this.palabras.length > 0) {
       const palabra = this.palabras[Math.floor(Math.random() * this.palabras.length)];
       this.palabraSeleccionada = palabra.split('');
-      console.log(palabra);
+      console.log(this.palabraSeleccionada);
     } else {
       console.error('No words available D:');
     }
@@ -97,7 +95,6 @@ export class JugarPage implements OnInit {
         break;
       default:
         console.log('how did this happen')
-
     }
 
     this.iniciarCronometro();
@@ -107,8 +104,8 @@ export class JugarPage implements OnInit {
   iniciarCronometro(){
     this.tiempoInicio = Date.now();
     this.intervalId = setInterval(() => {
-    this.tiempoActual = Date.now() - this.tiempoInicio;
-    }, 10);
+      this.tiempoActual = Date.now() - this.tiempoInicio;
+    }, 10); // Actualiza cada 10 ms
   }
 
   detenerCronometro() {
@@ -125,6 +122,7 @@ export class JugarPage implements OnInit {
 
     this.recordService.createRecord(record).subscribe(
       response => {
+        console.log('Récord guardado exitosamente:', response);
         this.router.navigate(['/']); // Navegar a la página de inicio después de guardar el récord
       },
       error => {
@@ -134,7 +132,7 @@ export class JugarPage implements OnInit {
 
   }
 
-  generarFilas(numeroFilas: number){
+  generarFilas(numeroFilas: number) {
     for (let i = 0; i < numeroFilas; i++) {
       this.filas.push({ activa: i === 0 }); // La primera fila estará activa, las demás inactivas
     }
@@ -152,13 +150,14 @@ export class JugarPage implements OnInit {
     this.filasActivas--;
 
     if(this.filasActivas == 0){
-        const alert = await this.alertController.create({
+      const alert = await this.alertController.create({
         header: '¡Ups!',
         message: 'Ya has agotado todos tus intentos.',
         buttons: [
           {
             text: 'Entiendo :(',
             handler: () => {
+              console.log('Botón OK presionado');
               this.router.navigate(['/']); // Navegar a la página de inicio
             }
           }
@@ -166,8 +165,9 @@ export class JugarPage implements OnInit {
       });
   
       await alert.present();
-    }
     
+    }
+
     const filasCompletas = this.filas.every(fila => fila.completa);
   
     if (filasCompletas) {
@@ -181,15 +181,15 @@ export class JugarPage implements OnInit {
   async onFilaCompleta(letras: string[]) {
 
     const resultado = this.generarResultado(letras, this.palabraSeleccionada);
+    console.log('Resultado:', resultado);
 
     if (this.arraysAreEqual(resultado, ['verde', 'verde', 'verde', 'verde', 'verde'])) { //En caso de que el jugador gane
+      console.log('¡Felicidades, has ganado!');
       this.broWon = true;
       this.detenerCronometro();
       this.guardarRecord();
       await this.mostrarMensajeFelicitacion();
     }
-
-    return this.broWon; 
 
   }
 
@@ -255,8 +255,6 @@ export class JugarPage implements OnInit {
         }
       }
     });
-
-    console.log(resultado);
 
     return resultado;
 

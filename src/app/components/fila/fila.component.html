@@ -1,13 +1,11 @@
 
 <app-celda 
-
   [disabled]="!filaActiva"
   (valorEmitido)="capturarValor($event, 0)"
   [ngClass]="{
     'verde': resultado && resultado[0] === 'verde',
     'amarillo': resultado && resultado[0] === 'amarillo',
     'rojo': resultado && resultado[0] === 'rojo'}"
-    
 ></app-celda>
 
 <app-celda 
